@@ -14,7 +14,8 @@ function App() {
       <img src={navbar} className='navbar' />
       <img src={menuTab} className='menuTab' />
       <div className="middle_section">
-        <img src={menuBar} className='menuBar' />
+        <div className="first-col">
+        </div>
         <div className="second-col"></div>
       </div>
       <img src={footer} className='footer' />
