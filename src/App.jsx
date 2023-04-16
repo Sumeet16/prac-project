@@ -3,6 +3,7 @@ import './App.css'
 import footer from "./assets/footer.png"
 import menuBar from "./assets/menu-bar.png"
 import menuTab from "./assets/menu-tab.png"
+import deleteTab from "./assets/delete.png"
 import navbar from "./assets/navbar.png"
 import script from "./assets/script.png"
 
@@ -72,15 +73,7 @@ function App() {
             </svg>
           </div>
           <div className="first_box">
-            <svg width="0.65rem" height="0.65rem" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" transform="rotate(180)">
-
-              <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-
-              <g id="SVGRepo_iconCarrier"> <rect width="16" height="16" id="icon-bound" fill="none" /> <polygon points="8,3 16,11 0,11" /> </g>
-
-            </svg>
+            <img src={deleteTab} />
           </div>
         </div>
 
@@ -98,7 +91,7 @@ function App() {
               <div className="bar"></div>
             </div>
             <div className="progress_points"></div>
-            <div className="progress_points"></div>
+            <div className="progress_points"><div className="animation_dot animate"></div></div>
             <div className="progress_points"></div>
           </div>
           <div className="fourth_row">
@@ -286,7 +279,7 @@ function App() {
         </div>
 
         <div className="table_box result">
-          <table className='result_table'>
+          <table className='result_table' style={{overflow: "hidden"}}>
             <tr>
               <th>Account</th>
               <th>No. of runs	</th>
