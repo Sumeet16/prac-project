@@ -69,14 +69,14 @@ body { min-height: 100%; }
 }
 
 .first-col ul li:nth-child(4){
-    padding: 0.35rem 0.2rem;
+    padding: 0.35rem 0.25rem;
 }
 .first-col ul li:nth-child(5){
-    padding: 0.35rem 0.2rem;
+    padding: 0.35rem 0.25rem;
 }
 
 .first-col svg{
-    margin-right: 0.15rem;
+    margin-right: 0.25rem;
     margin-bottom: 0.095rem;
 }
 
