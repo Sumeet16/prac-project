@@ -286,7 +286,7 @@ function App() {
         </div>
 
         <div className="table_box result">
-          <table>
+          <table className='result_table'>
             <tr>
               <th>Account</th>
               <th>No. of runs	</th>
