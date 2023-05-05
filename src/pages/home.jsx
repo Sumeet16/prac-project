@@ -6,6 +6,7 @@ import navbar from "../assets/navbar.png"
 import script from "../assets/script.png"
 import infoIcon from "../assets/info.png"
 import profitIcon from "../assets/tick.png"
+import flag from "../assets/flag.png"
 import "./home.css"
 import moment from 'moment';
 
@@ -19,7 +20,6 @@ const home = () => {
     const [pTotalStake, setpTotalStake] = useState(0);
     const [indexCounter, setindexCounter] = useState(0);
     const [payout, setPayout] = useState(0);
-    const [pProfit, setpProfit] = useState(0);
     const [pBalance, setpBalance] = useState(parseInt(localStorage.getItem("balance")));
     const [pWin, setpWin] = useState(0);
     const [points, setPoints] = useState(0);
@@ -31,7 +31,6 @@ const home = () => {
     const trade = localStorage.getItem("trade")
     let totalStake = 0;
     let totalPayout = 0;
-    let profit = 0;
     let balance = parseInt(localStorage.getItem("balance"));
     let datee = moment().format()
     var dateArray = datee.split('T').join(', ').split('+').join(', ').split(', ');
@@ -51,32 +50,24 @@ const home = () => {
         var refNo = parseInt(localStorage.getItem("reference"));
         const clock = new Date();
         const time = `${dateArray[0]} ${clock.toLocaleTimeString()} GMT+0530`;
-
-        const arr = {
-            ref: refNo,
-            status: "Pending",
-            timestamp: time
-        }
-        const arrr = {
-            ref: refNo,
-            entry: 2333.234,
-            exit: 2333.234,
-            profit: 0.09,
-            status: "Settled",
-            timestamp: time
-        }
+        var profit = tradeValue * 8.09;
 
         setTimeout(() => {
             setTimeout(() => {
+                balance -= tradeValue;
+                setpBalance(balance)
                 index += 1;
                 randomNumber = Math.floor(Math.random() * 10);
                 setpRandomNumber(randomNumber)
-                refNo = refNo + randomNumber;
-                console.log(refNo);
                 setindexCounter(index)
                 totalStake += tradeValue;
                 setpTotalStake(totalStake)
                 setIsRunning(true)
+                const arr = {
+                    ref: refNo + "1",
+                    status: "Pending",
+                    timestamp: time
+                }
                 setResultDataa(arr)
                 setWidth(50)
                 setPoints(50)
@@ -84,18 +75,43 @@ const home = () => {
                     setPoints(0)
                 }, 3500);
                 setTimeout(() => {
+                    let entryPoint = parseFloat(localStorage.getItem("entry"));
+                    let exitPoint = parseFloat(localStorage.getItem("exit"));
+                    if (Math.random() < 0.5) {
+                        entryPoint = (entryPoint + Math.random())
+                        exitPoint = (exitPoint + Math.random())
+                        var temp = entryPoint.toFixed(3)
+                        var temp2 = `${exitPoint.toFixed(2)}${randomNumber}`
+                        localStorage.setItem("entry", temp);
+                        localStorage.setItem("exit", temp2);
+                    } else {
+                        entryPoint = entryPoint - Math.random()
+                        exitPoint = (exitPoint - Math.random())
+                        var temp = entryPoint.toFixed(3)
+                        var temp2 = `${exitPoint.toFixed(2)}${randomNumber}`
+                        localStorage.setItem("entry", temp);
+                        localStorage.setItem("exit", temp2);
+                    }
+                    const arrr = {
+                        ref: refNo + "1",
+                        entry: temp,
+                        exit: temp2,
+                        profit: profit.toFixed(2),
+                        status: "Settled",
+                        timestamp: time
+                    }
                     setResultDataa(arrr)
+                    refNo = refNo + Math.floor(Math.random() * (20000 - 5000)) + 5000;
+                    localStorage.setItem("reference", refNo);
                     setWidth(100)
                     setPoints(100)
                     setTimeout(() => {
                         setPoints(0)
                     }, 2000);
-                    if (trade == "DIGITDIFF") {
-                        totalPayout = totalPayout + tradeValue + (tradeValue * 0.09)
+                    if (trade == "DIGITMATCH") {
+                        totalPayout = totalPayout + tradeValue + (tradeValue * 8.09)
                         setPayout(totalPayout)
-                        profit += (tradeValue * 0.09)
-                        setpProfit(profit)
-                        balance += (tradeValue * 0.09)
+                        balance = balance + tradeValue + (tradeValue * 8.09)
                         setpWin(index)
                         setpBalance(balance)
                     }
@@ -116,6 +132,7 @@ const home = () => {
 
     return (
         <div className="container">
+            <div className="balance">{pBalance.toFixed(2)} USD</div>
             <img src={navbar} className='navbar' />
             <img src={menuTab} className='menuTab' />
             <div className="middle_section">
@@ -149,17 +166,20 @@ const home = () => {
                 </div>
             </div>
             <img src={footer} className='footer' />
+            <div className="flag">
+                {/* <img src={flag} /> */}
+            </div>
             <p className="time">{dateArray[0]} {date.toLocaleTimeString()} GMT</p>
             <div className="infobar" style={points == 50 ? { "--points": `0.6rem` } : { "--points": `-4rem` }}>
                 <div className="i-bar">
                     <img src={infoIcon} />
-                    <p>Bought: Win payout if the last digit of Volatility 10 Index is not {pRandomNumber} after 1 tick. (ID: 411172145448)</p>
+                    <p>Bought: Win payout if the last digit of Volatility 10 Index is {pRandomNumber} after {localStorage.getItem("tick")} tick. (ID: {parseInt(localStorage.getItem("reference")) + "1"})</p>
                 </div>
             </div>
             <div className="infobar short" style={points == 100 ? { "--points": `0.6rem` } : { "--points": `-4rem` }}>
                 <div className="profit-bar">
                     <img src={profitIcon} />
-                    <p>Profit amount: 0.09</p>
+                    <p>Profit amount: {(tradeValue * 8.09).toFixed(2)}</p>
                 </div>
             </div>
 
@@ -187,11 +207,12 @@ const home = () => {
                 <div className="play_pause_btn" onClick={_addIt} >
                     <div className="fir_box"></div>
                     <div className="first_box">
-                        <svg fill="#000000" width="0.9rem" height="0.9rem" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                        {isRunning ? <svg fill="#000000" width="0.9rem" height="0.9rem" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
                             <path d="M175 .024V1920l1570.845-959.927z" fill-rule="evenodd" />
-                        </svg>
+                        </svg> : <svg style={{ marginLeft: "-0.11rem" }} xmlns="http://www.w3.org/2000/svg" width="0.75rem" height="0.75rem" viewBox="0 0 24 24"><path d="M24 0h-24v24h24v-24z" /></svg>}
+
                     </div>
-                    <div className="first_box">
+                    <div className="first_box" style={isRunning ? { opacity: "0.4" } : {}}>
                         <img src={deleteTab} />
                     </div>
                 </div>
@@ -243,7 +264,7 @@ const home = () => {
                                 <td>{resultDataa.profit}</td>
                                 <td>{resultDataa.status}</td>
                             </tr> : <></>}
-                            {resultData.map((elem, index) => {
+                            {resultData.slice(0).reverse().map((elem, index) => {
                                 return (
                                     <tr>
                                         <td>{elem.timestamp}</td>
@@ -275,13 +296,13 @@ const home = () => {
                         </tr>
                         <tbody>
                             <tr>
-                                <td>VRTC3213746</td>
+                                <td>CR2185994</td>
                                 <td>{indexCounter}</td>
                                 <td>{pTotalStake}.00</td>
                                 <td>{payout.toFixed(2)}</td>
                                 <td>{pWin}</td>
                                 <td>0</td>
-                                <td>{pProfit.toFixed(2)}</td>
+                                <td>{(pWin * (tradeValue * 8.09)).toFixed(2)}</td>
                                 <td>{pBalance.toFixed(2)} USD</td>
                             </tr>
                         </tbody>

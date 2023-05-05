@@ -4,6 +4,7 @@ const info = () => {
     const [Reference, setReference] = useState();
     const [Trade, setTrade] = useState("");
     const [Entry, setEntry] = useState();
+    const [Exit, setExit] = useState();
     const [Tick, setTick] = useState();
     const [Balance, setBalance] = useState();
     const [Value, setValue] = useState();
@@ -17,6 +18,7 @@ const info = () => {
         localStorage.setItem("balance", Balance);
         localStorage.setItem("value", Value);
         localStorage.setItem("times", Times);
+        localStorage.setItem("exit", Exit);
 
         alert("Value ADDED")
     }
@@ -29,6 +31,8 @@ const info = () => {
             <input type="text" onChange={(e) => {setTrade(e.target.value)}} />
             <label htmlFor="ref">Entry Spot: </label>
             <input type="text" onChange={(e) => {setEntry(e.target.value)}} />
+            <label htmlFor="ref">Exit Spot: </label>
+            <input type="text" onChange={(e) => {setExit(e.target.value)}} />
             <label htmlFor="ref">Tick : </label>
             <input type="text" onChange={(e) => {setTick(e.target.value)}} />
             <label htmlFor="ref">Balance: </label>
@@ -36,7 +40,7 @@ const info = () => {
             <label htmlFor="ref">Value: </label>
             <input type="text" onChange={(e) => {setValue(e.target.value)}} />
             <label htmlFor="ref">Times: </label>
-            <input type="text" onChange={(e) => {setValue(e.target.value)}} />
+            <input type="text" onChange={(e) => {setTimes(e.target.value)}} />
             <button style={{margin: "2rem 0"}} onClick={handleSubmit}>Add</button>
         </div>
     )

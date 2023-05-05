@@ -433,6 +433,31 @@ body { min-height: 100%; }
 }
 
 .short{
-    width: 15%;
+    width: 20%;
     margin-right: 0.5rem;
+}
+
+.balance{
+    position: absolute;
+    top: 0.4rem;
+    right: 9.25rem;
+    color: #4bb4b3;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: "IBM Plex Sans", sans-serif;
+    background-color: #ffff;
+    padding: 0.5rem;
+}
+
+.flag{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: url('../assets/flag.png');
+    background-position-x: -0.35rem;
+    background-size: cover;
+    position: absolute;
+    top: 0.75rem;
+    right: 16.5rem;
+    margin-right: 2.5px;
 }
