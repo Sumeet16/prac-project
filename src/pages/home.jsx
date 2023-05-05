@@ -49,7 +49,7 @@ const home = () => {
     const _addIt = () => {
         var refNo = parseInt(localStorage.getItem("reference"));
         const clock = new Date();
-        const time = `${dateArray[0]} ${clock.toLocaleTimeString()} GMT+0530`;
+        const time = `${dateArray[0]} ${clock.toLocaleTimeString()} GMT+0800`;
         var profit = tradeValue * 8.09;
 
         setTimeout(() => {
@@ -166,9 +166,7 @@ const home = () => {
                 </div>
             </div>
             <img src={footer} className='footer' />
-            <div className="flag">
-                {/* <img src={flag} /> */}
-            </div>
+            <div className="flag"></div>
             <p className="time">{dateArray[0]} {date.toLocaleTimeString()} GMT</p>
             <div className="infobar" style={points == 50 ? { "--points": `0.6rem` } : { "--points": `-4rem` }}>
                 <div className="i-bar">

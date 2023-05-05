@@ -24,11 +24,11 @@ body { min-height: 100%; }
 
 .time{
     position: absolute;
-    bottom: 0.7rem;
-    right: 6.5%;
+    bottom: 0.9rem;
+    right: 9.5%;
     background-color: #ffff;
     padding: 0 8px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 300;
     text-transform: none;
     text-align: left;
