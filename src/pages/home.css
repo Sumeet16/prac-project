@@ -440,7 +440,7 @@ body { min-height: 100%; }
 .balance{
     position: absolute;
     top: 0.5rem;
-    right: 12.25rem;
+    right: 11.25rem;
     color: #4bb4b3;
     font-size: 1.2rem;
     font-weight: bold;
@@ -450,8 +450,8 @@ body { min-height: 100%; }
 }
 
 .flag{
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: url('../assets/flag.png');
     background-position-x: -0.35rem;
