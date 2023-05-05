@@ -25,7 +25,7 @@ body { min-height: 100%; }
 .time{
     position: absolute;
     bottom: 0.5rem;
-    right: 7.5%;
+    right: 7%;
     background-color: #ffff;
     padding: 0 8px;
     font-size: 0.9rem;
