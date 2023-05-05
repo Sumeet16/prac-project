@@ -205,7 +205,7 @@ const home = () => {
                 <div className="play_pause_btn" onClick={_addIt} >
                     <div className="fir_box"></div>
                     <div className="first_box">
-                        {isRunning ? <svg fill="#000000" width="0.9rem" height="0.9rem" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                        {!isRunning ? <svg fill="#000000" width="0.9rem" height="0.9rem" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
                             <path d="M175 .024V1920l1570.845-959.927z" fill-rule="evenodd" />
                         </svg> : <svg style={{ marginLeft: "-0.11rem" }} xmlns="http://www.w3.org/2000/svg" width="0.75rem" height="0.75rem" viewBox="0 0 24 24"><path d="M24 0h-24v24h24v-24z" /></svg>}
 
